@@ -49,7 +49,8 @@ if (process.env.NODE_ENV === "production") {
     const frontendPath = path.join(__dirname, "../frontend/dist/frontend/browser");
     app.use(express.static(frontendPath));
 
-    app.get("/:any(.*)", (req, res) => {
+    // Używamy wyrażenia regularnego zamiast stringa, aby uniknąć problemów z parsowaniem w Express 5
+    app.get(/^(?!\/api).+/, (req, res) => {
         res.sendFile(path.join(frontendPath, "index.html"));
     });
 }
