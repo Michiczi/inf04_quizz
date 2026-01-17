@@ -15,6 +15,7 @@ const __dirname = path.dirname(__filename);
 
 const port = process.env.PORT || 3000;
 const app = express();
+app.set("trust proxy", 1);
 
 app.use(express.json());
 
@@ -36,7 +37,8 @@ app.use(
         cookie: {
             secure: process.env.NODE_ENV === "production",
             httpOnly: true,
-            maxAge: 1000 * 60 * 60
+            maxAge: 1000 * 60 * 60,
+            sameSite: process.env.NODE_ENV === "production" ? "lax" : "lax"
         },
     })
 );
