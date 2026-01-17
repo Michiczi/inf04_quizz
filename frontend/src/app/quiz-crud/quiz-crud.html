@@ -1,0 +1,352 @@
+<div class="quiz-admin-container">
+  <!-- Navbar -->
+  <nav class="quiz-admin-navbar">
+    <div class="container">
+      <div class="navbar-content">
+        <div class="navbar-logo">
+          <div class="logo-icon-wrapper">
+            <!-- [FileQuestion Icon] -->
+            <svg class="lucide lucide-file-question logo-icon" fill="none" height="24" stroke="currentColor"
+                 stroke-linecap="round"
+                 stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
+                 xmlns="http://www.w3.org/2000/svg">
+              <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+              <path d="M14 2v6h6"/>
+              <path d="M9 14h.01"/>
+              <path d="M9 10h.01"/>
+              <path d="M12 10h.01"/>
+              <path d="M15 10h.01"/>
+              <path d="M15 14h.01"/>
+              <path d="M12 14h.01"/>
+            </svg>
+          </div>
+          <div>
+            <span class="app-title">Inf Kwalifikacja 04</span>
+            <small class="admin-panel-text">Admin Panel</small>
+          </div>
+        </div>
+        <button
+          [routerLink]="['/admin-dashboard']"
+          class="dashboard-btn"
+        >
+          <!-- [Home Icon] -->
+          <svg class="lucide lucide-home dashboard-btn-icon" fill="none" height="24" stroke="currentColor"
+               stroke-linecap="round"
+               stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
+               xmlns="http://www.w3.org/2000/svg">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          Dashboard
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <div class="container py-4">
+    <div class="form-and-list-grid">
+
+      <!-- Form Card -->
+      <div>
+        <div class="card quiz-admin-card">
+          <div class="card-header quiz-admin-card-header">
+            <div class="d-flex align-items-center gap-2">
+              <ng-container *ngIf="editingQuizItem; else addQuestionHeader">
+                <!-- [Edit2 Icon] -->
+                <svg class="lucide lucide-edit-2 w-5 h-5 text-[var(--status-warning)]" fill="none" height="24"
+                     stroke="currentColor" stroke-linecap="round"
+                     stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
+                     xmlns="http://www.w3.org/2000/svg">
+                  <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+                  <path d="m15 5 4 4"/>
+                </svg>
+                <h5 class="mb-0">Edytuj pytanie</h5>
+              </ng-container>
+              <ng-template #addQuestionHeader>
+                <!-- [Plus Icon] -->
+                <svg class="lucide lucide-plus w-5 h-5" fill="none" height="24"
+                     stroke="currentColor" stroke-linecap="round"
+                     stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
+                     xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 5v14"/>
+                  <path d="M5 12h14"/>
+                </svg>
+                <h5 class="mb-0">Dodaj pytanie</h5>
+              </ng-template>
+            </div>
+          </div>
+          <div class="card-body quiz-admin-card-body">
+            <form (ngSubmit)="saveQuizItem()" [formGroup]="quizForm">
+              <!-- Question Input -->
+              <div class="form-group mb-4">
+                <label class="form-label mb-2">
+                  Pytanie <span class="required-star">*</span>
+                </label>
+                <textarea
+                  [class.is-invalid]="quizForm.controls['question'].invalid && (quizForm.controls['question'].dirty || quizForm.controls['question'].touched)"
+                  class="form-control"
+                  formControlName="question"
+                  placeholder="Wpisz treść pytania..."
+                  rows="4"
+                ></textarea>
+                <div
+                  *ngIf="quizForm.controls['question'].invalid && (quizForm.controls['question'].dirty || quizForm.controls['question'].touched)"
+                  class="invalid-feedback d-block">
+                  Pytanie jest wymagane i musi mieć co najmniej 5 znaków.
+                </div>
+              </div>
+
+              <!-- Answers -->
+              <div class="form-group mb-4">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                  <label class="form-label mb-0">
+                    Odpowiedzi <span class="required-star">*</span>
+                  </label>
+                  <button
+                    (click)="addAnswer()"
+                    class="btn btn-sm add-answer-option-btn"
+                    type="button"
+                  >
+                    <!-- [Plus Icon] -->
+                    <svg class="lucide lucide-plus w-3 h-3" fill="none" height="24" stroke="currentColor"
+                         stroke-linecap="round"
+                         stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
+                         xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 5v14"/>
+                      <path d="M5 12h14"/>
+                    </svg>
+                    Dodaj
+                  </button>
+                </div>
+                <div class="space-y-2">
+                  <div formArrayName="answers">
+                    <div *ngFor="let answerControl of answersFormArray.controls; let i = index"
+                         class="input-group d-flex gap-2 mb-2">
+                        <span class="input-group-text">
+                          {{ (97 + i) | chr | uppercase }}
+                        </span>
+                      <input
+                        [class.is-invalid]="answerControl.invalid && (answerControl.dirty || answerControl.touched)"
+                        [formControlName]="i"
+                        class="form-control"
+                        placeholder="Odpowiedź {{ (97 + i) | chr | uppercase }}"
+                        type="text"
+                      />
+                      <button
+                        (click)="removeAnswer(i)"
+                        *ngIf="answersFormArray.length > 2"
+                        class="btn btn-outline-danger remove-answer-option-btn"
+                        type="button"
+                      >
+                        <!-- [X Icon] -->
+                        <svg class="lucide lucide-x w-4 h-4" fill="none" height="24" stroke="currentColor"
+                             stroke-linecap="round"
+                             stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
+                             xmlns="http://www.w3.org/2000/svg">
+                          <path d="M18 6 6 18"/>
+                          <path d="m6 6 12 12"/>
+                        </svg>
+                      </button>
+                      <div *ngIf="answerControl.invalid && (answerControl.dirty || answerControl.touched)"
+                           class="invalid-feedback d-block">
+                        Opcja odpowiedzi nie może być pusta.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group mb-4">
+                <label class="form-label mb-2">
+                  Poprawna odpowiedź <span class="required-star">*</span>
+                </label>
+                <select
+                  [class.is-invalid]="quizForm.controls['correct'].invalid && (quizForm.controls['correct'].dirty || quizForm.controls['correct'].touched)"
+                  class="form-select"
+                  formControlName="correct"
+                >
+                  <option *ngFor="let answerControl of answersFormArray.controls; let i = index"
+                          [value]="(97 + i) | chr">
+                    {{ (97 + i) | chr | uppercase }} - {{ answerControl.value || '(pusta)' }}
+                    <ng-container *ngIf="editingQuizItem && ((97 + i) | chr) === quizForm.get('correct')?.value">
+                      (Poprawna)
+                    </ng-container>
+                  </option>
+                </select>
+                <div
+                  *ngIf="quizForm.controls['correct'].invalid && (quizForm.controls['correct'].dirty || quizForm.controls['correct'].touched)"
+                  class="invalid-feedback d-block">
+                  Poprawna odpowiedź jest wymagana.
+                </div>
+              </div>
+              <!-- Form Action Buttons -->
+              <div class="form-buttons-wrapper">
+                <button
+                  [disabled]="quizForm.invalid"
+                  class="btn btn-submit"
+                  type="submit"
+                >
+                  <!-- [Save Icon] -->
+                  <svg class="lucide lucide-save w-4 h-4" fill="none" height="24" stroke="currentColor"
+                       stroke-linecap="round"
+                       stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
+                       xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                    <polyline points="17 21 17 13 7 13 7 21"/>
+                    <polyline points="7 3 7 8 15 8"/>
+                  </svg>
+                  <ng-container *ngIf="editingQuizItem; else addQuestionButtonText">
+                    Zapisz zmiany
+                  </ng-container>
+                  <ng-template #addQuestionButtonText>
+                    Dodaj pytanie
+                  </ng-template>
+                </button>
+                <button
+                  (click)="cancelEdit()"
+                  *ngIf="editingQuizItem"
+                  class="btn btn-cancel"
+                  type="button"
+                >
+                  Anuluj
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Questions List -->
+      <div>
+        <div class="card quiz-admin-card questions-list-card">
+          <div class="card-header quiz-admin-card-header">
+            <div class="d-flex align-items-center justify-content-between">
+              <h5 class="mb-0">Lista pytań</h5>
+              <span class="questions-count-badge">
+                  {{ quizItems.length }} pytań
+                </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Questions -->
+        <div class="list-group question-item-list">
+          <div *ngIf="quizItems.length > 0">
+            <div
+              *ngFor="let item of paginatedQuizItems; let i = index"
+              class="list-group-item question-item"
+            >
+              <!-- Question Header -->
+              <div class="question-header">
+                <div class="question-header-content">
+                    <span class="question-badge">
+                      {{ ((currentPage - 1) * itemsPerPage) + i + 1 }}
+                    </span>
+                  <div class="question-text">
+                    <h6 class="mb-1">{{ item.question }}</h6>
+                  </div>
+                </div> <!-- Close question-header here -->
+
+                <!-- Answers List -->
+                <div class="answers-list-wrapper">
+                  <ul class="answers-list">
+                    <li
+                      *ngFor="let answer of item.answers; let answerIndex = index"
+                      [class.correct]="answer === item.correct"
+                      [class.default]="answer !== item.correct"
+                      class="answer-item"
+                    >
+                      <span [class.correct]="answer === item.correct"
+                            [class.default]="answer !== item.correct"
+                            class="answer-badge">
+                        {{ (97 + answerIndex) | chr | uppercase }}
+                      </span>
+                      <span [class.correct]="answer === item.correct"
+                            class="answer-text">
+                        {{ answer }}
+                      </span>
+                      <ng-container *ngIf="answer === item.correct">
+                        <!-- [Check Icon] -->
+                        <svg class="lucide lucide-check w-4 h-4 answer-check-icon" fill="none" height="24"
+                             stroke="currentColor" stroke-linecap="round"
+                             stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
+                             xmlns="http://www.w3.org/2000/svg">
+                          <path d="M20 6 9 17l-5-5"/>
+                        </svg>
+                      </ng-container>
+                    </li>
+                  </ul>
+
+                  <!-- Action Buttons -->
+                  <div class="question-actions">
+                    <button
+                      (click)="editQuizItem(item)"
+                      class="btn btn-edit"
+                    >
+                      <!-- [Edit2 Icon] -->
+                      <svg class="lucide lucide-edit-2 w-4 h-4" fill="none" height="24" stroke="currentColor"
+                           stroke-linecap="round"
+                           stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
+                           xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+                        <path d="m15 5 4 4"/>
+                      </svg>
+                      Edytuj
+                    </button>
+                    <button
+                      (click)="deleteQuizItem(item._id)"
+                      class="btn btn-delete"
+                    >
+                      <!-- [Trash2 Icon] -->
+                      <svg class="lucide lucide-trash-2 w-4 h-4" fill="none" height="24" stroke="currentColor"
+                           stroke-linecap="round"
+                           stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
+                           xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 6h18"/>
+                        <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+                        <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                      </svg>
+                      Usuń
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="quizItems.length === 0">
+                <div class="empty-state-card">
+                  <div class="card-body">
+                    <p>
+                      Brak pytań w bazie. Dodaj pierwsze pytanie, aby rozpocząć.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pagination Controls -->
+            <div *ngIf="totalPages > 1" class="pagination-controls">
+              <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1" class="btn">
+                &laquo; Poprzednia
+              </button>
+              <span class="page-info">
+                                                Strona {{ currentPage }} z {{ totalPages }}
+                                              </span>
+              <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages" class="btn">
+                Następna &raquo;
+              </button>
+            </div>
+          </div>
+          <div *ngIf="quizItems.length === 0">
+            <div class="empty-state-card">
+              <div class="card-body">
+                <p>
+                  Brak pytań w bazie. Dodaj pierwsze pytanie, aby rozpocząć.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

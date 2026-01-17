@@ -1,0 +1,68 @@
+<div class="admin-dashboard-wrapper">
+  <!-- Navbar -->
+  <nav class="quiz-admin-navbar">
+    <div class="container">
+      <div class="navbar-content">
+        <div class="navbar-logo">
+          <div class="logo-icon-wrapper">
+            <!-- [FileQuestion Icon] -->
+            <svg class="lucide lucide-file-question logo-icon" fill="none" height="24" stroke="currentColor"
+                 stroke-linecap="round"
+                 stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
+                 xmlns="http://www.w3.org/2000/svg">
+              <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+              <path d="M14 2v6h6"/>
+              <path d="M9 14h.01"/>
+              <path d="M9 10h.01"/>
+              <path d="M12 10h.01"/>
+              <path d="M15 10h.01"/>
+              <path d="M15 14h.01"/>
+              <path d="M12 14h.01"/>
+            </svg>
+          </div>
+          <div>
+            <span class="app-title">Inf Kwalifikacja 04</span>
+            <small class="admin-panel-text">Admin Panel</small>
+          </div>
+        </div>
+        <button
+          [routerLink]="['/admin/quiz-crud']"
+          class="dashboard-btn"
+        >
+          <!-- [ClipboardList Icon] -->
+          <svg class="lucide lucide-clipboard-list dashboard-btn-icon" fill="none" height="24" stroke="currentColor"
+               stroke-linecap="round"
+               stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
+               xmlns="http://www.w3.org/2000/svg">
+            <rect width="8" height="4" x="8" y="2"/>
+            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+            <path d="M16 6H8"/>
+            <path d="M12 12h4"/>
+            <path d="M12 16h4"/>
+            <path d="M12 20h4"/>
+          </svg>
+          Zarządzaj Quizem
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="main-content">
+    <div class="admin-dashboard-card">
+        <h1 class="mb-3">Witaj, {{ adminName }}!</h1>
+        <p>Wybierz akcję, którą chcesz wykonać w panelu administratora.</p>
+
+        <div class="dashboard-actions">
+          <button class="btn btn-manage" (click)="manageQuizQuestions()">
+            <svg class="icon" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+            Zarządzaj pytaniami
+          </button>
+
+          <button class="btn btn-logout" (click)="logout()">
+            <svg class="icon" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+            Wyloguj
+          </button>
+        </div>
+      </div>
+  </div>
+</div>

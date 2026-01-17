@@ -1,0 +1,131 @@
+<!-- Hero Section -->
+<div class="hero-section">
+  <div class="container py-5">
+    <div class="row align-items-center g-5">
+      <!-- Left Content -->
+      <div class="col-lg-6">
+        <div class="hero-content">
+          <!-- Badge -->
+          <div class="badge-pill mb-4">
+            <span class="sparkle">✨</span>
+            <span>Czas na Quizz!</span>
+            <span class="sparkle">✨</span>
+          </div>
+
+          <!-- Main Title -->
+          <h1 class="hero-title mb-4">
+            Yo! Gotowy na <br>
+            <span class="neon-text">Quizz</span><br/> z kwalifikacji Inf 04? 🎮
+          </h1>
+
+          <!-- Description -->
+          <p class="hero-description mb-4">
+            Sprawdźmy swoją wiedzę z przed egzaminem!
+            Nie martw się, robiąc nasz quizz codziennie, zdasz ten egzamin śpiewająco 😊
+          </p>
+
+          <!-- CTA Buttons -->
+          <div class="d-flex flex-column flex-sm-row gap-3 mb-5">
+            <button
+              (click)="onGetStarted()"
+              class="btn btn-neon btn-lg"
+              type="button">
+              Zaczynamy! 🚀
+            </button>
+          </div>
+
+          <!-- Stats -->
+          <div class="stats-row">
+            <div *ngFor="let stat of stats" class="stat-item">
+              <div class="stat-emoji">{{ stat.emoji }}</div>
+              <div class="stat-value">{{ stat.value }}</div>
+              <div class="stat-label">{{ stat.label }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Image -->
+      <div class="col-lg-6">
+        <div class="hero-image-wrapper">
+          <div class="image-glow"></div>
+          <img
+            [src]="heroImage"
+            alt="Neon gaming setup"
+            class="hero-image">
+          <div class="floating-emoji emoji-1">💻</div>
+          <div class="floating-emoji emoji-2">🌟</div>
+          <div class="floating-emoji emoji-3">🎯</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Features Section -->
+<div class="features-section">
+  <div class="container py-5">
+    <!-- Section Header -->
+    <div class="text-center mb-5">
+      <h2 class="section-title mb-3">
+        Dlaczego ten quiz 🤔
+      </h2>
+      <p class="section-description mx-auto">
+        Stworzyliśmy ten quiz, aby był przyjemny, ponieważ życie jest zbyt krótkie na nudne testy ✨
+      </p>
+    </div>
+
+    <!-- Feature Cards Grid -->
+    <div class="row g-4 mb-5">
+      <div *ngFor="let feature of features" class="col-md-6 col-lg-4">
+        <div [attr.data-color]="feature.color" class="feature-card">
+          <div class="feature-icon-wrapper">
+            <span class="feature-icon">{{ feature.icon }}</span>
+            <span class="feature-emoji">{{ feature.emoji }}</span>
+          </div>
+          <h3 class="feature-title">{{ feature.title }}</h3>
+          <p class="feature-description">{{ feature.description }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Card -->
+    <div class="cta-card">
+      <div class="cta-content text-center">
+        <div class="cta-emoji-header">
+          <span class="big-emoji">🎊</span>
+          <span class="big-emoji">🎉</span>
+          <span class="big-emoji">🎊</span>
+        </div>
+        <h2 class="cta-title mb-3">
+          Gotowy pokazać co potrafisz? 💪
+        </h2>
+        <p class="cta-description mb-4">
+          Dołącz do fajnych dzieciaków, które już zmiażdżyły ten quiz i są gotowe na egzamin teoretyczny z kwalifikacji
+          Inf 04!<br/>
+          Teraz twoja kolej~ 🌟
+        </p>
+        <button
+          (click)="onGetStarted()"
+          class="btn btn-cta btn-lg"
+          type="button">
+          Rozpocznij test ✨
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container py-4">
+    <div class="text-center">
+      <p class="footer-text mb-2">
+        Zrobione z 💜 dla wspaniałych ludzi takich jak ty
+      </p>
+      <p class="footer-copyright">
+        © {{ currentYear }} Inf Qualification 04 · Wszystkie prawa zastrzeżone, ale jesteśmy wyluzowani~
+      </p>
+    </div>
+  </div>
+</footer>

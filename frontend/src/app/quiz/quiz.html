@@ -1,0 +1,74 @@
+<div class="quiz-wrapper">
+  @if (showResult) {
+    <div class="card text-center result-card">
+      <div class="card-header">
+        <h2>Quiz Zakończony!</h2>
+      </div>
+      <div class="card-body">
+        @if (newHighScore) {
+          <h5 class="new-highscore-text">🏆 Nowy Rekord! 🏆</h5>
+        }
+        <p class="score-label">Twój wynik:</p>
+        <h1 class="score-display">{{ wynik }}%</h1>
+        <p class="highscore-info">Najlepszy wynik: {{ highScore }}%</p>
+
+        <div class="result-actions">
+          <button class="btn btn-replay" (click)="replay()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon lucide lucide-rotate-cw"><path d="M21 2v6h-6"/><path d="M21 13a9 9 0 1 1-3-7.7L21 8"/></svg>
+            Spróbuj ponownie
+          </button>
+          <button class="btn btn-dashboard" (click)="backToDashboard()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon lucide lucide-layout-dashboard"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+            Powrót do panelu
+          </button>
+          <button class="btn btn-logout" (click)="logout()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon lucide lucide-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+            Wyloguj
+          </button>
+        </div>
+      </div>
+    </div>
+  } @else {
+    @if (currentQuestion) {
+      <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <span>Pytanie {{ i }} / {{ questionsList.length }}</span>
+          <div>
+            <span class="badge bg-primary rounded-pill me-3">Zostało: {{ timer }}s</span>
+            <button class="btn btn-danger btn-sm" (click)="logout()">Wyloguj</button>
+          </div>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title mb-4">{{ currentQuestion.question }}</h2>
+          <div class="d-grid gap-2">
+            @for (option of currentQuestion.answers; track option) {
+              <button 
+                class="btn btn-outline-primary text-start"
+                (click)="checkAnswer(option)"
+                [disabled]="isAnswered"
+                [ngClass]="{
+                  'btn-success': answerStyles[option] === 'limegreen',
+                  'btn-danger': answerStyles[option] === 'tomato',
+                  'btn-outline-primary': !answerStyles[option]
+                }">
+                {{ option }}
+              </button>
+            }
+          </div>
+        </div>
+        <div class="card-footer text-end">
+          @if (isAnswered) {
+            <button class="btn btn-primary" (click)="nextQuestion()">Następne pytanie</button>
+          }
+        </div>
+      </div>
+    } @else {
+      <div class="text-center">
+        <p>Ładowanie pytań...</p>
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    }
+  }
+</div>

@@ -1,0 +1,152 @@
+/* Inspired by admin-dashboard.css, quiz-crud.css and home.css styles */
+.dashboard-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--bg-gradient-main); /* Ensure wrapper has bg */
+}
+
+.main-content {
+    flex-grow: 1;
+}
+
+.dashboard-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1; /* Make it take available space */
+  padding: 1rem;
+}
+
+.dashboard-card {
+  width: 100%;
+  max-width: 600px;
+  background-color: var(--card-bg-translucent);
+  border: 1px solid var(--card-border-translucent);
+  border-radius: 0.5rem;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  text-align: center;
+}
+
+.dashboard-card h1 {
+  color: var(--neon-text-light);
+  margin-bottom: 0.75rem;
+  font-size: 2rem;
+}
+
+.dashboard-card p {
+  color: var(--text-muted);
+  font-size: 1.125rem;
+  margin-bottom: 2rem;
+}
+
+.dashboard-card .card-text strong {
+  color: var(--neon-secondary);
+  font-weight: 600;
+}
+
+.dashboard-actions {
+  display: grid;
+  gap: 1rem;
+}
+
+.dashboard-actions .btn {
+  padding: 0.875rem 1.5rem;
+  border-radius: 0.25rem;
+  transition: all 0.2s;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  font-size: 1rem;
+}
+
+.dashboard-actions .btn-start {
+  background: linear-gradient(to right, var(--neon-primary), var(--neon-tertiary));
+  color: white;
+}
+
+.dashboard-actions .btn-start:hover {
+  box-shadow: 0px 10px 15px -3px rgba(var(--neon-primary-rgb), 0.2), 0px 4px 6px -4px rgba(var(--neon-primary-rgb), 0.1);
+  transform: translateY(-2px);
+}
+
+.dashboard-actions .btn-logout {
+  background-color: rgba(var(--status-error-rgb), 0.2);
+  color: var(--status-error);
+  border: 1px solid rgba(var(--status-error-rgb), 0.3);
+  margin-top: 1.5rem; /* Add some space above logout */
+}
+
+.dashboard-actions .btn-logout:hover {
+  background-color: rgba(var(--status-error-rgb), 0.3);
+}
+
+.dashboard-actions .btn .icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Navbar styles */
+.dashboard-navbar {
+  background-color: var(--navbar-bg); /* a slightly transparent dark bg */
+  border-bottom: 1px solid var(--card-border-translucent);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(8px);
+}
+
+.dashboard-navbar .container {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.dashboard-navbar .navbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4rem; /* h-16 */
+}
+
+.dashboard-navbar .navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.dashboard-navbar .logo-icon-wrapper {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.25rem;
+  background: linear-gradient(to bottom right, var(--neon-primary), var(--neon-secondary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.dashboard-navbar .logo-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: white;
+}
+
+.dashboard-navbar .app-title {
+  color: var(--neon-text-light);
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+.dashboard-navbar .user-panel-text {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}

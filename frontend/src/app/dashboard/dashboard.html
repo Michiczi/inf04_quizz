@@ -1,0 +1,52 @@
+<div class="dashboard-wrapper">
+  <!-- Navbar -->
+  <nav class="dashboard-navbar">
+    <div class="container">
+      <div class="navbar-content">
+        <div class="navbar-logo">
+          <div class="logo-icon-wrapper">
+            <!-- [FileQuestion Icon] -->
+            <svg class="lucide lucide-file-question logo-icon" fill="none" height="24" stroke="currentColor"
+                 stroke-linecap="round"
+                 stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
+                 xmlns="http://www.w3.org/2000/svg">
+              <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+              <path d="M14 2v6h6"/>
+              <path d="M9 14h.01"/>
+              <path d="M9 10h.01"/>
+              <path d="M12 10h.01"/>
+              <path d="M15 10h.01"/>
+              <path d="M15 14h.01"/>
+              <path d="M12 14h.01"/>
+            </svg>
+          </div>
+          <div>
+            <span class="app-title">Inf Kwalifikacja 04</span>
+            <small class="user-panel-text">Panel Użytkownika</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="main-content">
+    <div class="dashboard-container">
+      <div class="dashboard-card">
+        <h1 class="mb-3">Witaj, {{ userName }}!</h1>
+        <p class="card-text fs-5">Twój najwyższy wynik to: <strong>{{ highScore }}%</strong></p>
+
+        <div class="dashboard-actions">
+          <button class="btn btn-start" (click)="startQuiz()">
+            <svg class="icon" fill="none" height="24" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="24" xmlns="http://www.w3.org/2000/svg"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Rozpocznij Quiz
+          </button>
+
+          <button class="btn btn-logout" (click)="logout()">
+            <svg class="icon" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+            Wyloguj
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

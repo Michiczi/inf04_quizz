@@ -1,0 +1,185 @@
+.quiz-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Ensure it takes full viewport height */
+  padding: 1rem; /* Add some padding around the content */
+}
+
+/* Apply some basic styling for the card consistent with other components */
+.quiz-wrapper .card {
+  max-width: 700px; /* Limit the width of the quiz card */
+  width: 100%;
+  margin-top: 0 !important; /* Override Bootstrap's mt-5 if present */
+  background-color: var(--card-bg-translucent);
+  border: 1px solid var(--card-border-translucent);
+  border-radius: 0.5rem;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.quiz-wrapper .card-header,
+.quiz-wrapper .card-footer {
+  background-color: rgba(var(--neon-text-main-rgb), 0.05);
+  border-color: var(--card-border-translucent);
+  color: var(--neon-text-light); /* Assuming neon-text-light exists */
+}
+
+.quiz-wrapper .card-title {
+  color: var(--neon-text-light);
+}
+
+.quiz-wrapper .card-body {
+  padding: 2rem;
+  color: var(--text-muted); /* Assuming text-muted exists */
+}
+
+/* Styles for buttons inside the quiz card, consistent with neon theme */
+.quiz-wrapper .btn-outline-primary {
+  color: var(--neon-primary);
+  border-color: var(--neon-primary);
+  transition: all 0.2s;
+}
+
+.quiz-wrapper .btn-outline-primary:hover {
+  background-color: rgba(var(--neon-primary-rgb), 0.2);
+  color: var(--neon-primary);
+}
+
+.quiz-wrapper .btn-primary {
+  background: linear-gradient(to right, var(--neon-primary), var(--neon-tertiary));
+  border-color: transparent;
+  color: white;
+  transition: all 0.2s;
+}
+
+.quiz-wrapper .btn-primary:hover {
+  box-shadow: 0px 10px 15px -3px rgba(var(--neon-primary-rgb), 0.2), 0px 4px 6px -4px rgba(var(--neon-primary-rgb), 0.1);
+  transform: translateY(-2px);
+  opacity: 1;
+}
+
+.quiz-wrapper .btn-danger {
+  background-color: rgba(var(--status-error-rgb), 0.2);
+  color: var(--status-error);
+  border: 1px solid rgba(var(--status-error-rgb), 0.3);
+  transition: all 0.2s;
+}
+
+.quiz-wrapper .btn-danger:hover {
+  background-color: rgba(var(--status-error-rgb), 0.3);
+}
+
+.quiz-wrapper .badge {
+  background-color: var(--neon-secondary); /* or another neon color */
+  color: white;
+}
+
+/* Styling for correct answer button */
+.quiz-wrapper .btn-success {
+  background-color: rgba(var(--status-success-rgb), 0.2);
+  color: var(--status-success);
+  border: 1px solid rgba(var(--status-success-rgb), 0.3);
+  transition: all 0.2s;
+}
+
+.quiz-wrapper .btn-success:hover {
+  background-color: rgba(var(--status-success-rgb), 0.3);
+}
+
+/* Result Card Styles */
+.quiz-wrapper .result-card .card-header h2 {
+  color: var(--neon-text-light);
+  font-weight: 600;
+}
+
+.quiz-wrapper .new-highscore-text {
+  color: var(--status-success);
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  animation: pulse-success 1.5s infinite;
+}
+
+@keyframes pulse-success {
+  0% { transform: scale(1); text-shadow: 0 0 5px rgba(var(--status-success-rgb), 0.5); }
+  50% { transform: scale(1.05); text-shadow: 0 0 15px rgba(var(--status-success-rgb), 0.8); }
+  100% { transform: scale(1); text-shadow: 0 0 5px rgba(var(--status-success-rgb), 0.5); }
+}
+
+.quiz-wrapper .score-label {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.quiz-wrapper .score-display {
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--neon-secondary);
+  text-shadow: 0 0 15px rgba(var(--neon-secondary-rgb), 0.5);
+  margin-bottom: 0.5rem;
+}
+
+.quiz-wrapper .highscore-info {
+  color: var(--text-muted);
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.quiz-wrapper .result-actions {
+  display: grid;
+  gap: 1rem;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.quiz-wrapper .result-actions .btn {
+  padding: 0.875rem 1.5rem;
+  border-radius: 0.25rem;
+  transition: all 0.2s;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  font-size: 1rem;
+}
+
+.quiz-wrapper .btn-replay {
+  background: linear-gradient(to right, var(--neon-primary), var(--neon-tertiary));
+  color: white;
+}
+
+.quiz-wrapper .btn-replay:hover {
+  box-shadow: 0px 10px 15px -3px rgba(var(--neon-primary-rgb), 0.2), 0px 4px 6px -4px rgba(var(--neon-primary-rgb), 0.1);
+  transform: translateY(-2px);
+}
+
+.quiz-wrapper .btn-dashboard {
+  background-color: rgba(var(--neon-secondary-rgb), 0.2);
+  color: var(--neon-secondary);
+  border: 1px solid rgba(var(--neon-secondary-rgb), 0.3);
+}
+
+.quiz-wrapper .btn-dashboard:hover {
+  background-color: rgba(var(--neon-secondary-rgb), 0.3);
+}
+
+.quiz-wrapper .result-actions .btn-logout {
+  background-color: rgba(var(--status-error-rgb), 0.2);
+  color: var(--status-error);
+  border: 1px solid rgba(var(--status-error-rgb), 0.3);
+  margin-top: 1rem; /* Add some space above logout */
+}
+
+.quiz-wrapper .result-actions .btn-logout:hover {
+  background-color: rgba(var(--status-error-rgb), 0.3);
+}
+
+.quiz-wrapper .result-actions .btn .icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
