@@ -64,13 +64,9 @@ A modern, full-stack application featuring a robust authentication system and a 
    npm run dev
    ```
 
-## 🌐 Deployment on Render.com
+## 🌐 Render.com
 
-This project is optimized for Render using a single Web Service:
-
-- **Build Command**: `npm install && npm run build`
-- **Start Command**: `npm start`
-- **Environment Variables**: Make sure to add `MONGO_URI` and `SESSION_SECRET` in the Render dashboard.
+You can check out this project on Render.com[https://inf04-quizz.onrender.com/home]
 
 ## 📄 License
 
