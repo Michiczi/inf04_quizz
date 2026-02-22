@@ -1,6 +1,6 @@
-# Quiz & Auth Fullstack Application
+# INF04 Quiz Fullstack MERN Application
 
-A modern, full-stack application featuring a robust authentication system and a quiz management module. Built with the **MEAN** stack (MongoDB, Express, Angular, Node.js) and designed for easy deployment on **Render.com**.
+A modern, full-stack application featuring a robust authentication system and a quiz management module. Built with the **MEAN** stack (MongoDB, Express, Angular, Node.js).
 
 ## 🚀 Features
 
@@ -15,9 +15,6 @@ A modern, full-stack application featuring a robust authentication system and a 
 - **Modern UI**:
   - Responsive design using **Bootstrap 5**.
   - Dynamic components and real-time validation.
-- **Deployment Ready**:
-  - Pre-configured for **Render.com** (monorepo structure).
-  - Optimized build process for production.
 
 ## 🛠️ Tech Stack
 
@@ -40,12 +37,12 @@ A modern, full-stack application featuring a robust authentication system and a 
 
 1. **Clone the repository**:
    ```bash
-   git clone <your-repo-url>
-   cd login_form
+   git clone https://github.com/Michiczi/inf04_quizz.git
+   cd inf04_quizz
    ```
 
 2. **Install dependencies**:
-   Installs packages for both root, backend, and frontend.
+   This will install dependencies for the root, backend, and frontend projects via a `postinstall` hook.
    ```bash
    npm install
    ```
@@ -59,14 +56,20 @@ A modern, full-stack application featuring a robust authentication system and a 
    ```
 
 4. **Run in Development**:
-   Starts both the backend and frontend simultaneously.
+   Starts both the backend and frontend development servers simultaneously.
    ```bash
-   npm run dev
+   npm start
+   ```
+
+5. **Run in Production (after building frontend)**:
+   Builds the frontend and then starts the backend server.
+   ```bash
+   npm run start:prod
    ```
 
 ## 🌐 Render.com
 
-You can check out this project on Render.com[https://inf04-quizz.onrender.com/home]
+You can check out this project on [Render.com](https://inf04-quizz.onrender.com/home)
 
 ## 📄 License
 
